@@ -1,37 +1,78 @@
-Клонировать репозиторий и перейти в него в командной строке:
+# YaCut
 
-```
-git clone 
-```
+## Описание
+**YaCut** - cервис укорачивания ссылок, который заменяет длинную ссылку на короткую (до 16 символов).
+Вариант сокращения может быть задан как самим пользователем, так и сгенерирован автоматически сервисом.
+Все сокращения уникальны. Реализован Web-интерфейс для пользователей и REST API.
 
-```
-cd yacut
-```
+### Основные эндпоинты
+/ - Web-интерфейс для генерации короткой ссылки
 
-Cоздать и активировать виртуальное окружение:
+/<short_id>/ - Web-интерфейс для переадресации на исходную ссылку
 
-```
-python3 -m venv venv
-```
+/api/id/ - POST-запрос к API для генерации короткой ссылки
 
-* Если у вас Linux/macOS
+/api/id/<short_id>/ - GET-запрос для получения исходной ссылки из короткой
 
-    ```
-    source venv/bin/activate
-    ```
 
-* Если у вас windows
+## Стек технологий
 
-    ```
-    source venv/scripts/activate
-    ```
+![](https://img.shields.io/badge/Python-3.9-black?style=flat&logo=python) 
+![](https://img.shields.io/badge/Flask-2.0.2-black?style=flat&logo=flask)
+![](https://img.shields.io/badge/SQLAlchemy-1.4.29-black?style=flat&logo=sqlalchemy)
 
-Установить зависимости из файла requirements.txt:
+## Порядок действий для запуска проекта
 
-```
-python3 -m pip install --upgrade pip
+***1. Клонировать репозиторий и перейти в папку c проектом***
+
+```bash
+git clone https://github.com/VitsVi/yacut.git
 ```
 
+```bash
+cd YaCut
 ```
+
+***2. Cоздать и активировать виртуальное окружение***
+
+*Для Windows*
+```bash
+python -m venv env
+source venv/Scripts/Activate
+```
+*Для MacOS/Linux*
+```shell
+python3 -m venv env
+source env/bin/activate
+```
+
+***3. Обновить менеджер pip и установить зависимости из файла requirements.txt***
+
+```bash
+python -m pip install --upgrade pip
+```
+
+```bash
 pip install -r requirements.txt
 ```
+
+***4. Применить миграции для создания базы данных***
+
+```bash
+flask db upgrade
+```
+
+***5. Создать файл .env и заполнить по примеру из файла env.example***
+
+```bash
+touch .env
+```
+
+***6. Запустить проект***
+```bash
+flask run
+```
+
+### Автор проекта
+
+[VitsVi](https://github.com/VitsVi)
