@@ -1,4 +1,7 @@
 # YaCut
+[![Python](https://img.shields.io/badge/-Python-464646?style=flat&logo=Python&logoColor=56C0C0&color=008080)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/-Flask-464646?style=flat&logo=Flask&logoColor=white&color=000000)](https://flask.palletsprojects.com/)
+[![SQLAlchemy](https://img.shields.io/badge/-SQLAlchemy-464646?style=flat&logo=SQLAlchemy&logoColor=red&color=800000)](https://www.sqlalchemy.org/)
 
 ## Описание
 **YaCut** - cервис укорачивания ссылок, который заменяет длинную ссылку на короткую (до 16 символов).
@@ -14,12 +17,6 @@
 
 /api/id/<short_id>/ - GET-запрос для получения исходной ссылки из короткой
 
-
-## Стек технологий
-
-[![Python](https://img.shields.io/badge/-Python-464646?style=flat&logo=Python&logoColor=56C0C0&color=008080)](https://www.python.org/)
-[![Flask](https://img.shields.io/badge/-Flask-464646?style=flat&logo=Flask&logoColor=white&color=000000)](https://flask.palletsprojects.com/)
-[![SQLAlchemy](https://img.shields.io/badge/-SQLAlchemy-464646?style=flat&logo=SQLAlchemy&logoColor=red&color=800000)](https://www.sqlalchemy.org/)
 
 ## Порядок действий для запуска проекта
 
