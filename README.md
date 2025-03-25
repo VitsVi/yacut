@@ -17,9 +17,9 @@
 
 ## Стек технологий
 
-![](https://img.shields.io/badge/Python-3.9-black?style=flat&logo=python) 
-![](https://img.shields.io/badge/Flask-2.0.2-black?style=flat&logo=flask)
-![](https://img.shields.io/badge/SQLAlchemy-1.4.29-black?style=flat&logo=sqlalchemy)
+[![Python](https://img.shields.io/badge/-Python-464646?style=flat&logo=Python&logoColor=56C0C0&color=008080)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/-Flask-464646?style=flat&logo=Flask&logoColor=white&color=000000)](https://flask.palletsprojects.com/)
+[![SQLAlchemy](https://img.shields.io/badge/-SQLAlchemy-464646?style=flat&logo=SQLAlchemy&logoColor=red&color=800000)](https://www.sqlalchemy.org/)
 
 ## Порядок действий для запуска проекта
 
