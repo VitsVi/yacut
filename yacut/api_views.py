@@ -16,12 +16,18 @@ def get_original_url(url):
     return jsonify({'url': url_obj.original}), HTTPStatus.OK
 
 
-@app.route('/api/id/', methods=('POST',))
+@app.route('/api/id/', methods=['POST'])
 def generate_short_url():
     """Метод API для генерации короткой ссылки."""
-    data = request.get_json()
+    data = request.get_json(silent=True)
+    if data is None:
+        raise InvalidAPIUsage(
+            "Отсутствует тело запроса", HTTPStatus.BAD_REQUEST
+        )
+
     try:
         url_obj = URLMap.create_obj(data)
     except URLValidationError as error:
         raise InvalidAPIUsage(error.message)
+
     return jsonify(url_obj.to_dict()), HTTPStatus.CREATED
