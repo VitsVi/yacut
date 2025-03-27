@@ -10,6 +10,9 @@ from yacut.constants import (MAX_LEN_ORIGINAL, MAX_LEN_SHORT,
 from yacut.error_handlers import URLValidationError
 
 
+MAX_ATTEMPTS = 10
+
+
 class URLMap(db.Model):
     """Модель для сохранения оригинальной и короткой ссылки на источник."""
 
@@ -29,15 +32,17 @@ class URLMap(db.Model):
     @staticmethod
     def get_unique_short_id():
         """Метод создает уникальную короткую ссылку."""
-        while True:
-            short_url = ''.join(
-                random.choices(population=STR_FOR_GEN_URL, k=6)
-            )
-            if URLMap.query.filter_by(short=short_url).first() is None:
+        for _ in range(MAX_ATTEMPTS):
+            short_url = ''.join(random.choices(STR_FOR_GEN_URL, k=6))
+            if not URLMap.query.filter_by(short=short_url).first():
                 return short_url
+        raise RuntimeError(
+            "Не удалось сгенерировать"
+            " уникальный идентификатор"
+        )
 
     @staticmethod
-    def get_obj_by_short(url):
+    def get_link_by_short(url):
         """Метод получает объект по его короткой ссылке."""
         return URLMap.query.filter_by(short=url).first()
 
@@ -53,13 +58,13 @@ class URLMap(db.Model):
         elif re.search(PATTERN_FOR_CHECK_URL, data['custom_id']) is None:
             raise URLValidationError('Указано недопустимое имя для '
                                      'короткой ссылки')
-        elif URLMap.get_obj_by_short(data['custom_id']) is not None:
+        elif URLMap.get_link_by_short(data['custom_id']) is not None:
             raise URLValidationError('Предложенный вариант короткой ссылки '
                                      'уже существует.')
         return data
 
     @staticmethod
-    def create_obj(data):
+    def create_short_link(data):
         """Метод для создания объекта."""
         data = URLMap.validate_data(data)
         url_obj = URLMap(original=data['url'], short=data['custom_id'])

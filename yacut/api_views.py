@@ -10,7 +10,7 @@ from yacut.models import URLMap
 @app.route('/api/id/<string:url>/', methods=('GET',))
 def get_original_url(url):
     """Метод API для получения оригинальной ссылки."""
-    url_obj = URLMap.get_obj_by_short(url)
+    url_obj = URLMap.get_link_by_short(url)
     if url_obj is None:
         raise InvalidAPIUsage('Указанный id не найден', HTTPStatus.NOT_FOUND)
     return jsonify({'url': url_obj.original}), HTTPStatus.OK
@@ -26,7 +26,7 @@ def generate_short_url():
         )
 
     try:
-        url_obj = URLMap.create_obj(data)
+        url_obj = URLMap.create_short_link(data)
     except URLValidationError as error:
         raise InvalidAPIUsage(error.message)
 

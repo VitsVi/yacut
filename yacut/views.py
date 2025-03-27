@@ -13,7 +13,7 @@ def page_for_generate_url():
     if form.validate_on_submit():
         data = dict(url=form.original_link.data, custom_id=form.custom_id.data)
         try:
-            url_obj = URLMap.create_obj(data)
+            url_obj = URLMap.create_short_link(data)
         except URLValidationError as error:
             flash(error.message, 'error')
             return render_template('index.html', form=form)
